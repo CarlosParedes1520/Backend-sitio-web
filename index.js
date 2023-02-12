@@ -10,20 +10,20 @@ const app = express();
 // configurar cors
 app.use(cors())
 
+
+// Lectura y parseo del body en postman 
+app.use(express.json());
+
 //webSitePro       //42GGysbbhhaWQn9N
 // base de datos BD
 dbConnection();
-console.log(process.env);
+// console.log(process.env);
 
 // rutas
-app.get('/', (req, res)=>{
-    res.json(
-        {
-            ok: true,
-            msg: 'hola mundo'
-        }
-    )
-});
+app.use('/api/usuarios', require('./routes/usuarios'))
+app.use('/api/login', require('./routes/auth'))
+
+
 
 app.listen(process.env.PORT, ()=>{
     console.log('Servidor corriendo en puerto'+3000);
