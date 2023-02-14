@@ -10,6 +10,9 @@ const app = express();
 // configurar cors
 app.use(cors())
 
+// CArpeta publica
+app.use(express.static('public'));
+
 
 // Lectura y parseo del body en postman 
 app.use(express.json());
