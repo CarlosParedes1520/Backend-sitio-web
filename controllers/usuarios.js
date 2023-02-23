@@ -107,8 +107,17 @@ const actualizarUsuario = async (req, res = response) => {
                 });
             }
 
+           
+        } 
+        if (!usuarioDb.google) {
             campos.email = email;
+        }else if (usuarioDb.email !== email) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Usuarios de google no pueden cambiar su correo'
+            })
         }
+       
 // colocando esto: const {password, google,...campos} = req.body;
 //me evito colocar los deletes  password y google
         // delete campos.password;

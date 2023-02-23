@@ -16,7 +16,7 @@ const login = async(req,res= response) => {
         if (!usuarioDB) {
             return res.status(404).json({
                 ok: false,
-                msg: 'Contraseña no valida'
+                msg: 'Email no encontrado'
             })
         }
 
@@ -101,10 +101,13 @@ const renewToken = async (req, res = response) => {
     // generar el token jwt
     const token = await generarJWT(uid);
         
+    // Obtener el usuario por uid
+    const usuario = await Usuario.findById(uid);
 
     res.json({
         ok: true,
-        token
+        token,
+        usuario
     })
 }
 
